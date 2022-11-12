@@ -1,6 +1,6 @@
 from apis_init import all_exchanges
 
-binance, phemex = all_exchanges()
+binance, phemex, mexc = all_exchanges()
 
 symbols = ['USDC', 'USDT']
 
@@ -18,4 +18,11 @@ def phemex_pairs():
         if any(x in item for x in symbols):
             print(item, end=" || ")
             
-phemex_pairs()
+def mexc_pairs():
+    mexc_markets = mexc.load_markets()
+
+    for item in mexc_markets:
+        if any(x in item for x in symbols):
+            print(item, end=" || ")
+            
+mexc_pairs()
