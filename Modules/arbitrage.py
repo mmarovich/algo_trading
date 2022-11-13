@@ -1,5 +1,5 @@
-from Modules.asks import all_current_asks
-from Modules.bids import all_current_bids
+from asks import all_current_asks
+from bids import all_current_bids
 
 asks = all_current_asks(1)
 bids = all_current_bids(1)
