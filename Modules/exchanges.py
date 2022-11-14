@@ -21,5 +21,11 @@ exchange_list = [
         'id': 'mexc',
         'key': os.getenv('MEXC_API_KEY'),
         'secret': os.getenv('MEXC_API_SECRET')
+    },
+    {
+        'name': 'Kraken',
+        'id': 'kraken',
+        'key': os.getenv('KRAKEN_API_KEY'),
+        'secret': os.getenv('KRAKEN_API_SECRET')
     }
 ]

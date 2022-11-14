@@ -8,11 +8,9 @@ load_dotenv()
 exchanges = exchanges.exchange_list
 
 
-# def getExchanges():
-#     for exchange in exchanges:
-#         print(exchange['name'], end=" || ")
-        
-# getExchanges()
+def getExchanges():
+    for exchange in exchanges:
+        print(exchange['name'], end=" || ")
     
     
 
@@ -35,6 +33,12 @@ def all_exchanges():
         'secret': os.getenv("MEXC_API_SECRET")
     })
     
+    kraken = ccxt.kraken({
+        'enableRateLimit': True,
+        'apiKey': os.getenv("KRAKEN_API_KEY"),
+        'secret': os.getenv("KRAKEN_API_SECRET")
+    })
     
-    return binance, phemex, mexc
+    
+    return binance, phemex, mexc, kraken
 
