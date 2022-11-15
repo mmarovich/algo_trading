@@ -1,11 +1,11 @@
 import ccxt
-import exchanges
+from Modules.exchanges import exchange_list
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
 
-exchanges = exchanges.exchange_list
+exchanges = exchange_list
 
 
 def getExchanges():

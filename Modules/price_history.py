@@ -1,4 +1,4 @@
-from apis_init import all_exchanges
+from Modules.apis_init import all_exchanges
 import datetime
 
 binance, phemex, mexc, kraken = all_exchanges()

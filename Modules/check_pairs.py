@@ -1,4 +1,4 @@
-from apis_init import all_exchanges
+from Modules.apis_init import all_exchanges
 
 binance, phemex, mexc = all_exchanges()
 

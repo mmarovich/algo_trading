@@ -1,5 +1,5 @@
-from apis_init import all_exchanges
-from utils.mean_price import calc_mean_price
+from Modules.apis_init import all_exchanges
+from Modules.utils.mean_price import calc_mean_price
 
 binance, phemex, mexc, kraken = all_exchanges()
 
