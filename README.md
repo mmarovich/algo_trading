@@ -33,9 +33,9 @@ pip install pandas scikit-learn cctx hvplot yfinance pandas_ta numpy dotenv
 
 ## Contributors
 
-Maxwell Marovich
-Jim Hitchcock
-Simon Abennet
+* Maxwell Marovich
+* Jim Hitchcock
+* Simon Abennet
 
 ---
 
