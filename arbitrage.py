@@ -1,37 +1,59 @@
 from Modules.asks import all_current_asks
 from Modules.bids import all_current_bids
-
-asks = all_current_asks(1)
-bids = all_current_bids(1)
+from Modules.send_email import send_email
+import time
 
 def get_opportunity(amount):
-    print(asks)
-    highest_price = 0
-    highest_ask = {}
+    
+    asks = all_current_asks(1)
+    bids = all_current_bids(1)
+    
+    print(f"all of the asking prices: {asks}")
+    print("")
+    print(f"All of the bids prices: {bids}")
+    print("")
+    print("")
+    
+    lowest_price = 10000000000
+    lowest_ask = {}
     for ask in asks:
-        if float(ask['price']) > highest_price:
-            highest_price = float(ask['price'])
-            highest_ask = ask
+        if float(ask['price']) < lowest_price:
+            lowest_price = float(ask['price'])
+            lowest_ask = ask
 
     
-    print(highest_ask)
-    
-    lowest_price = 100000000
-    lowest_bid = {}
+    print(f"The lowest asking price: {lowest_ask}")
+
+    highest_price = 0
+    highest_bid = {}
     for bid in bids:
-        if float(bid['price']) < lowest_price:
-            lowest_price = float(bid['price'])
-            lowest_bid = bid
+        if float(bid['price']) > highest_price:
+            highest_price = float(bid['price'])
+            highest_bid = bid
     
-    print(lowest_bid)
+    print(f"The highest bid is: {highest_bid}")
+    print("")
+    print("")
     
-    profit = ((float(lowest_bid['price']) - float(highest_ask['price'])) * amount) - (0.01 * amount)
+    fee1 = (0.001 * amount) * lowest_price
+    fee2 = (0.001 * amount) * highest_price
     
-    if profit > 0:
+    profit = ((float(highest_bid['price']) - float(lowest_ask['price'])) * amount)
+    profit_with_fees = ((float(highest_bid['price']) - float(lowest_ask['price'])) * amount) - (fee1 + fee2)
+    
+    if profit_with_fees > 0:
         print(f"You have an opportunity to make ${profit}")
+        send_email(lowest_ask['id'], lowest_ask['price'], highest_bid['id'], highest_bid['price'], profit_with_fees)
     else:
-        print(f"If you made this trade you would lose ${profit}")
+        print(f"If you made this trade you would lose ${round(abs(profit_with_fees), 2)}, ${round(abs(profit_with_fees) - profit, 2)} of that is because of fees")
+        send_email(lowest_ask['id'], lowest_ask['price'], highest_bid['id'], highest_bid['price'], profit_with_fees)
         
-        
-        
-get_opportunity(1)
+def run():
+    while True:
+        get_opportunity(1)
+        time.sleep(60 * 1)
+        print("||||||||||||||||||||||||||||")
+            
+
+            
+run()

@@ -27,5 +27,13 @@ exchange_list = [
         'id': 'kraken',
         'key': os.getenv('KRAKEN_API_KEY'),
         'secret': os.getenv('KRAKEN_API_SECRET')
+    },
+    {
+        'name': 'KuCoin',
+        'id': 'kucoin',
+        'key': os.getenv('KUCOIN_API_KEY'),
+        'secret': os.getenv('KUCOIN_API_SECRET'),
+        'password': os.getenv('KUCOIN_API_PASSPHRASE')
     }
+    
 ]

@@ -1,7 +1,7 @@
 from Modules.apis_init import all_exchanges
 import datetime
 
-binance, phemex, mexc, kraken = all_exchanges()
+binance, phemex, mexc, kraken, kucoin = all_exchanges()
 
 
 # binance_markets = binance.load_markets()
@@ -11,7 +11,7 @@ binance, phemex, mexc, kraken = all_exchanges()
 #     if any(x in item for x in symbols):
 #         print(item, end=" || ")
     
-days_to_now = 500
+days_to_now = 1000
 symbol = 'BTC/USDT'
 interval = '1d'
 
@@ -24,5 +24,5 @@ def get_history(account):
     
     return history
 
-# result = get_history(binance)
-# print(result)
+# result = get_history(kucoin)
+# print(len(result))
