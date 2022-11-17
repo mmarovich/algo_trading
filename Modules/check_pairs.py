@@ -1,6 +1,6 @@
-from apis_init import all_exchanges
+from Modules.apis_init import all_exchanges
 
-binance, phemex, mexc = all_exchanges()
+binance, phemex, mexc, kraken, kucoin = all_exchanges()
 
 symbols = ['USDC', 'USDT']
 
@@ -25,4 +25,18 @@ def mexc_pairs():
         if any(x in item for x in symbols):
             print(item, end=" || ")
             
-mexc_pairs()
+def kraken_pairs():
+    kraken_markets = kraken.load_markets()
+
+    for item in kraken_markets:
+        if any(x in item for x in symbols):
+            print(item, end=" || ")
+            
+def kucoin_pairs():
+    kucoin_markets = kucoin.load_markets()
+
+    for item in kucoin_markets:
+        if any(x in item for x in symbols):
+            print(item, end=" || ")
+            
+# kucoin_pairs()

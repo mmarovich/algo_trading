@@ -1,11 +1,11 @@
 import ccxt
-import exchanges
+from Modules.exchanges import exchange_list
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
 
-exchanges = exchanges.exchange_list
+exchanges = exchange_list
 
 
 def getExchanges():
@@ -39,6 +39,13 @@ def all_exchanges():
         'secret': os.getenv("KRAKEN_API_SECRET")
     })
     
+    kucoin = ccxt.kucoin({
+        'enableRateLimit': True,
+        'apiKey': os.getenv("KUCOIN_API_KEY"),
+        'secret': os.getenv("KUCOIN_API_SECRET"),
+        'password': os.getenv("KUCOIN_API_PASSPHRASE")
+    })
     
-    return binance, phemex, mexc, kraken
+    
+    return binance, phemex, mexc, kraken, kucoin
 

@@ -1,8 +1,8 @@
-from apis_init import all_exchanges
+from Modules.apis_init import all_exchanges
 import json
 
 
-binance, phemex, mexc, kraken = all_exchanges()
+binance, phemex, mexc, kraken, kucoin = all_exchanges()
 
 
 def binanace_assets():
@@ -48,6 +48,19 @@ def kraken_assets():
         
     return balances
 
+def kucoin_assets():
+    kucoin_assets = kucoin.fetch_balance()['info']['data']
+    
+    balances=[]
+    for asset in kucoin_assets:
+        if float(asset['balance']) > 0:
+            balance = {'asset': asset['currency'], 'total': asset['balance']}
+            balances.append(balance)
+        
+    return balances
+
+
+kucoin_assets()
     
 def all_balances():
     all_balances = {}
@@ -55,6 +68,7 @@ def all_balances():
     all_balances["Phemex"] = phemex_assets()
     all_balances["MEXC"] = mexc_assets()
     all_balances["Kraken"] = kraken_assets()
+    all_balances["KuCoin"] = kucoin_assets()
     
     return all_balances
     
